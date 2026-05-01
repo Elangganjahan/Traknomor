@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRAK NOMOR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 30px;
+    }
+
+    .logo {
+      font-size: 48px;
+      font-weight: bold;
+      color: #00ff66;
+      text-shadow: 0 0 15px #00ff66;
+    }
+
+    .container {
+      margin-top: 50px;
+      padding: 20px;
+    }
+
+    input {
+      width: 300px;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #00ff66;
+      color: black;
+      font-size: 18px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #00cc55;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      display: inline-block;
+      min-width: 300px;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">TRAK NOMOR</div>
+    <p>Sistem Validasi Nomor Aman & Legal</p>
+  </header>
+
+  <div class="container">
+    <input type="text" id="phoneNumber" placeholder="Masukkan nomor telepon">
+    <button onclick="trackNumber()">Lacak</button>
+
+    <div class="result" id="resultBox">
+      Hasil pencarian akan tampil di sini
+    </div>
+  </div>
+
+  <footer>
+    © 2026 TRAK NOMOR | Pengecekan Nomor Legal
+  </footer>
+
+  <script>
+    function trackNumber() {
+      const number = document.getElementById("phoneNumber").value;
+      const resultBox = document.getElementById("resultBox");
+
+      if (!number) {
+        resultBox.innerHTML = "Silakan masukkan nomor telepon.";
+        return;
+      }
+
+      let provider = "Tidak diketahui";
+
+      if (number.startsWith("081") || number.startsWith("082")) {
+        provider = "Telkomsel";
+      } else if (number.startsWith("085")) {
+        provider = "Indosat";
+      } else if (number.startsWith("087")) {
+        provider = "XL/Axis";
+      }
+
+      resultBox.innerHTML = `
+        <h3>Hasil TRAK NOMOR</h3>
+        <p><strong>Nomor:</strong> ${number}</p>
+        <p><strong>Provider:</strong> ${provider}</p>
+        <p><strong>Status:</strong> Nomor valid (simulasi)</p>
+        <p><strong>Negara:</strong> Indonesia</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
